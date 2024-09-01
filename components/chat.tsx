@@ -6,18 +6,23 @@ import { Message, useChat } from "ai/react"
 import React from 'react'
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { initialMessages } from "@/lib/utils";
+import { initialMessages, scrollToEnd } from "@/lib/utils";
 import { Spinner } from "./ui/spinner";
+import { useRef, useEffect } from 'react';
 
 const Chat = () => {
     const { messages, input, handleInputChange, handleSubmit, isLoading} = useChat({
         initialMessages,
     })
     
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        setTimeout(() => scrollToEnd(containerRef), 100);
+    }, [messages])
 
     return (
         <div className="rounded-2xl border h-[75vh] flex flex-col justify-between">
-            <div className="p-6 overflow-auto">
+            <div className="p-6 overflow-auto" ref = {containerRef}>
                 {messages.map(({ id, role, content }: Message, index) => (
                     <ChatBubble
                         key={id}

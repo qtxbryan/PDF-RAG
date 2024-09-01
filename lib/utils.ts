@@ -26,3 +26,17 @@ export const initialMessages: Message[] = [
       "Hi! I am your PDF assistant. I am happy to help with your questions about your PDF document",
   },
 ];
+
+export function scrollToEnd(containerRef: React.RefObject<HTMLElement>) {
+  if (containerRef.current) {
+    const lastMessage = containerRef.current.lastElementChild;
+
+    if (lastMessage) {
+      const scrollOptions: ScrollIntoViewOptions = {
+        behavior: "smooth",
+        block: "end",
+      }
+      lastMessage.scrollIntoView(scrollOptions);
+    }
+  }
+}
