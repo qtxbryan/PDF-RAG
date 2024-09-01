@@ -40,3 +40,19 @@ export function scrollToEnd(containerRef: React.RefObject<HTMLElement>) {
     }
   }
 }
+
+interface Data{
+  sources: string[];
+}
+
+export const getSources = (data: Data[], role: string, index: number) => {
+  if (role === 'assistant' && index >= 2 && (index - 2) % 2 === 0) {
+    const sourcesIndex = (index - 2) / 2;
+
+    if (data[sourcesIndex] && data[sourcesIndex].sources) {
+      return data[sourcesIndex].sources
+    }
+  }
+
+  return [];
+}

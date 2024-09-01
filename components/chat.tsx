@@ -6,12 +6,12 @@ import { Message, useChat } from "ai/react"
 import React from 'react'
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { initialMessages, scrollToEnd } from "@/lib/utils";
+import { getSources, initialMessages, scrollToEnd } from "@/lib/utils";
 import { Spinner } from "./ui/spinner";
 import { useRef, useEffect } from 'react';
 
 const Chat = () => {
-    const { messages, input, handleInputChange, handleSubmit, isLoading} = useChat({
+    const { messages, input, handleInputChange, handleSubmit, isLoading, data} = useChat({
         initialMessages,
     })
     
@@ -28,7 +28,7 @@ const Chat = () => {
                         key={id}
                         role={role}
                         content={content}
-                        sources={[]}
+                        sources={data?.length ? getSources(data, role, index): []}
                     />
                 ))}
             </div>
