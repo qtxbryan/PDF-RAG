@@ -5,6 +5,7 @@ import { delay } from './utils';
 
 let pineconeClientInstance: Pinecone | null = null
 
+// Create index in pinecone vector store 
 async function createIndex(client: Pinecone, indexName: string) {
     try {
         await client.createIndex({
@@ -28,6 +29,8 @@ async function createIndex(client: Pinecone, indexName: string) {
     }
     
 }
+
+// Initialize pinecone vector store 
 async function initPinecone() {
     try {
         

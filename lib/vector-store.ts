@@ -3,6 +3,7 @@ import { Pinecone } from "@pinecone-database/pinecone";
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { PineconeStore } from "@langchain/pinecone";
 
+// Embed PDF document and store in pinecone vector store
 export async function embedAndStoreDocs(
     client: Pinecone,
     docs: Document<Record<string, any>>[]
@@ -21,6 +22,7 @@ export async function embedAndStoreDocs(
     }
 }
 
+// Get embeddings from vector store
 export async function getVectorStore(client: Pinecone) {
     try {
         const embeddings = new OpenAIEmbeddings(); // using "text-ada-002"
